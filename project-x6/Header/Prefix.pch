@@ -1,0 +1,162 @@
+//
+//  Prefix.pch
+//  project-x6
+//
+//  Created by Apple on 15/11/20.
+//  Copyright © 2015年 Apple. All rights reserved.
+//
+
+#ifndef Prefix_pch
+#define Prefix_pch
+
+//注释掉所有的nsl语句
+#ifdef DEBUG
+#       define DLog(fmt, ...) NSLog((@"%s [Line %d] " fmt), __PRETTY_FUNCTION__, __LINE__, ##__VA_ARGS__);
+#else
+#       define DLog(...)
+#endif
+
+#define SYSTEMVERSION     (__bridge NSString *)kCFBundleVersionKey
+
+#import <UIKit/UIKit.h>
+
+#import <Availability.h>
+
+#import <Foundation/Foundation.h>
+#import "UIViewExt.h"
+//屏宽高
+#define KScreenWidth [UIScreen mainScreen].bounds.size.width
+#define KScreenHeight [UIScreen mainScreen].bounds.size.height
+
+#define AFNETWORKING_ALLOW_INVALID_SSL_CERTIFICATES
+
+#import "EaseUI.h"
+
+//响应者链
+#import "UIView+EventLink.h"
+
+//数据加载中
+#import "MBProgressHUD.h"
+#import "BasicControls.h"
+//类目
+#import "UIViewController+ThemeNavigationController.h"
+#import "UIBarButtonItem+Extension.h"
+
+//下拉刷新更多
+#import "MJRefresh.h"
+
+//颜色
+#define Mycolor [UIColor colorWithRed:18/255.0f green:183/255.0f blue:245/255.0f alpha:1]          //主色调
+#define GrayColor [UIColor colorWithRed:239/255.0f green:239/255.0f blue:244/255.0f alpha:1]       //灰色背景
+#define LineColor [UIColor colorWithRed:220/255.0f green:220/255.0f blue:220/255.0f alpha:1]       //灰色边线
+#define ExtraTitleColor [UIColor colorWithRed:153/255.0f green:153/255.0f blue:153/255.0f alpha:1] //副标题
+#define PriceColor [UIColor colorWithRed:244/255.0f green:91/255.0f blue:91/255.0f alpha:1]        //价格红色
+#define HeaderBgColorArray @[ColorRGB(161, 136, 127),ColorRGB(246, 94, 141),ColorRGB(238, 69, 66),ColorRGB(245, 197, 47),ColorRGB(255, 148, 61),ColorRGB(107, 181, 206),ColorRGB(94, 151, 246),ColorRGB(154, 137, 185),ColorRGB(106, 198, 111),ColorRGB(120, 192, 110)]
+
+#define NotouchButtonColor [UIColor colorWithRed:136/255.0f green:219/255.0f blue:250/255.0f alpha:1]//没有点击的按钮颜色
+
+//字号
+#define TitleFont [UIFont systemFontOfSize:17]    //标题
+#define RightTitleFont [UIFont systemFontOfSize:14]  //导航栏副标题按钮
+#define ExtitleFont [UIFont systemFontOfSize:13]  //副标题
+#define MainFont [UIFont systemFontOfSize:15]  //注释
+
+
+//总计的
+#define totalWidth ((KScreenWidth - 70) / 3)
+
+//AFNetworking.h
+#import "AFNetworking.h"
+
+//接口
+#import "X6API.h"
+
+//动态文本
+#import "MLEmojiLabel.h"
+
+//model
+#import "MJExtension.h"
+
+//图片缓存
+#import "UIImageView+WebCache.h"
+#import "UIButton+WebCache.h"
+
+
+#import "NSMutableArray+InsertFrameKey.h"
+//jsonkit
+#import "JSONKit.h"
+
+//网络请求
+#import "XPHTTPRequestTool.h"
+
+//客户版本
+#define Kehuedition @"Kehuedition"
+
+//没有纪录
+#import "NoDataView.h"
+
+//用户信息
+#define X6_isLoading @"X6_isLoading"
+#define X6_UserIdentity @"X6_UserIdentity"     //用户类型
+#define X6_UserMessage @"X6_UserMessage"       //用户信息——字典
+#define X6_newUserMessage @"X6_newUserMessage" //更改绑定用户后新的用户信息
+#define X6_UserQXList @"X6_UserQXList"         //权限列表
+#define X6_UseUrl @"X6_UseUrl"                 //应用服务器
+#define X6_Cookie @"X6_Cookie"                 //cookie
+#define X6_UserHeaderView @"X6_UserHeaderView" //用户头像
+#define X6_Contactlist @"X6_Contactlist"       //联系人数据
+#define X6_refresh @"X6_refresh"               //刷新参数
+#define X6_releases @"X6_releases"             //版本记录
+#define X6_isSubscribe @"X6_isSubscribe"       //订阅日报
+#define X6_TalkPerson @"X6_TalkPerson"         //营业款异常
+
+
+//沙盒目录
+#define DOCSFOLDER [NSHomeDirectory() stringByAppendingPathComponent:@"Documents"]
+#define ImageFile [DOCSFOLDER stringByAppendingPathComponent:@"Image"]
+
+/************************定义各种系统版本的宏**************************/
+/************************定义各种系统版本的宏**************************/
+#define iOS7  ([[UIDevice currentDevice].systemVersion doubleValue] >= 7.0)
+
+#define iosVersion      [[UIDevice currentDevice] systemVersion]
+//判断屏幕尺寸是否为4，4s
+#define isDevice4_4s    (([[UIScreen mainScreen] bounds].size.height) == 480)
+//判断屏幕尺寸是否为6P
+#define isDevice6P    (([[UIScreen mainScreen] bounds].size.height) == 667)
+
+#define isIOS8          (([iosVersion floatValue] >= 8.0f) ? YES : NO)
+#define isIOS7          (([iosVersion floatValue] >= 7.0f && [iosVersion floatValue] < 8.0f) ? YES : NO)
+#define isIOS6          (([iosVersion floatValue] >= 6.0f && [iosVersion floatValue] < 7.0f) ? YES : NO)
+#define isIOS5          (([iosVersion floatValue] >= 5.0f && [iosVersion floatValue] < 6.0f) ? YES : NO)
+#define _iOS7_Or_Later_   ([iosVersion floatValue] >= 7.0f)
+
+/************************定义各类尺寸的宏**************************/
+/************************定义各类尺寸的宏**************************/
+
+#define StatusBarHeight  (iOS7==YES ? 0 : 20)
+#define BackHeight       (iOS7==YES ? 0 : 15)
+
+#define NavBarHeigth     (iOS7==YES ? 64 : 44)
+#define TabBarHeight     49.0
+
+
+#define PuretureSize ((KScreenWidth - 30) / 3)
+/************************定义各种颜色的宏**************************/
+/************************定义各种颜色的宏**************************/
+
+//生成随机色
+#define SRRandomColor   [UIColor colorWithRed:arc4random_uniform(256)/255.0f green:arc4random_uniform(256)/255.0f blue:arc4random_uniform(256)/255.0f alpha:1.0];
+
+#define SR_Color_Background    [UIColor colorWithRed:236/255.0f green:236/255.0f blue:236/255.0f alpha:1.0]
+
+#define SR_Color_Line          [UIColor colorWithRed:204/255.0f green:204/255.0f blue:204/255.0f alpha:1.0]
+
+#define ColorRGB(r,g,b) [UIColor colorWithRed:(r/255.0) green:(g/255.0) blue:(b/255.0) alpha:1.0]
+
+#define COLORA(R,G,B,A) [UIColor colorWithRed:R/255.0 green:G/255.0 blue:B/255.0 alpha:A]
+
+#endif /* Prefix_pch */
+
+
+
